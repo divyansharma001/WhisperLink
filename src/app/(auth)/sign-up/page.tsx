@@ -37,7 +37,7 @@ export default function SignUpForm() {
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: '',
-      email: '',
+      email: '', // Keep email in default values
       password: '',
     },
   });
@@ -75,7 +75,8 @@ export default function SignUpForm() {
         description: response.data.message,
       });
 
-      router.replace(`/verify/${username}`);
+      // Redirect to the login page directly
+      router.replace('/sign-in');
 
       setIsSubmitting(false);
     } catch (error) {
@@ -84,8 +85,8 @@ export default function SignUpForm() {
       const axiosError = error as AxiosError<ApiResponse>;
 
       // Default error message
-      let errorMessage = axiosError.response?.data.message;
-      ('There was a problem with your sign-up. Please try again.');
+      let errorMessage = axiosError.response?.data.message || 
+                         'There was a problem with your sign-up. Please try again.';
 
       toast({
         title: 'Sign Up Failed',
@@ -144,12 +145,11 @@ export default function SignUpForm() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <Input {...field} name="email" />
-                  <p className='text-muted text-gray-400 text-sm'>We will send you a verification code</p>
+                  <p className='text-muted text-gray-400 text-sm'>Your email will not be verified.</p>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
             <FormField
               name="password"
               control={form.control}
@@ -185,4 +185,3 @@ export default function SignUpForm() {
     </div>
   );
 }
-
