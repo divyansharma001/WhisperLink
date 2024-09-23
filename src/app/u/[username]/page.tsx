@@ -78,7 +78,7 @@ export default function SendMessage() {
       toast({
         title: 'Error',
         description:
-          axiosError.response?.data.message ?? 'Failed to sent message',
+          axiosError.response?.data.message ?? 'Failed to send message',
         variant: 'destructive',
       });
     } finally {
@@ -96,9 +96,9 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-[#2C3639] rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
+    <div className="container mx-auto my-8 p-6 bg-[#DCD7C9] rounded-lg shadow-lg max-w-lg md:max-w-3xl">
+      <h1 className="text-4xl font-bold mb-6 text-center text-[#2C3639]">
+        Share Your Thoughts Anonymously
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -107,11 +107,11 @@ export default function SendMessage() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
+                <FormLabel>Message to @{username}</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Write your anonymous message here"
-                    className="resize-none"
+                    placeholder="Type your anonymous message here..."
+                    className="resize-none border rounded-md focus:border-[#A27B5C] focus:ring-[#A27B5C]"
                     {...field}
                   />
                 </FormControl>
@@ -119,59 +119,64 @@ export default function SendMessage() {
               </FormItem>
             )}
           />
-          <div className="flex justify-center">
-            {isLoading ? (
-              <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
-                Send It
-              </Button>
-            )}
-          </div>
+         <div className="flex justify-center">
+  {isLoading ? (
+    <Button disabled className="bg-gray-400 text-white border-gray-600 cursor-not-allowed transition duration-200 ease-in-out transform">
+      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+      Sending...
+    </Button>
+  ) : (
+    <Button
+      type="submit"
+      className="bg-black text-white border cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out"
+      disabled={isLoading || !messageContent}
+    >
+      Send it
+    </Button>
+  )}
+</div>
         </form>
       </Form>
 
       <div className="space-y-4 my-8">
-        <div className="space-y-2">
+        <div className="space-y-2 text-center">
           <Button
             onClick={fetchSuggestedMessages}
             className="my-4"
             disabled={isSuggestLoading}
           >
-            Suggest Messages
+            Suggest Messages from AI
           </Button>
-          <p>Click on any message below to select it.</p>
+          <p>Select a suggested message below to quickly add it!</p>
         </div>
         <Card>
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
-          </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
-            {error ? (
-              <p className="text-red-500">{error.message}</p>
-            ) : (
-              parseStringMessages(completion).map((message, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="mb-2"
-                  onClick={() => handleMessageClick(message)}
-                >
-                  {message}
-                </Button>
-              ))
-            )}
-          </CardContent>
-        </Card>
+  <CardHeader>
+    <h3 className="text-xl font-semibold">Suggested Messages</h3>
+  </CardHeader>
+  <CardContent className="flex flex-col space-y-4">
+    {error ? (
+      <p className="text-red-500">{error.message}</p>
+    ) : (
+      parseStringMessages(completion).map((message, index) => (
+        <Button
+          key={index}
+          variant="outline"
+          className="mb-2 border-[#2C3639] text-[#2C3639] hover:bg-[#2C3639] hover:text-white transition duration-200 text-left w-full truncate"
+          onClick={() => handleMessageClick(message)}
+        >
+          <span className="overflow-hidden whitespace-nowrap overflow-ellipsis">{message}</span>
+        </Button>
+      ))
+    )}
+  </CardContent>
+</Card>
+
       </div>
       <Separator className="my-6" />
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <p className="mb-4">Join us to enhance your experience!</p>
         <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
+          <Button className="bg-[#A27B5C] text-black border border-black hover:bg-[#A27B5C]/90">Create Account</Button>
         </Link>
       </div>
     </div>
