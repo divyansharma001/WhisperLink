@@ -11,7 +11,7 @@ function Navbar() {
   const user : User = session?.user;
 
   return (
-    <nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">
+    <nav className="p-4 md:p-6 shadow-md bg-[#2C3639] text-white">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <a href="#" className="text-xl font-bold mb-4 md:mb-0">
           Whisper Link
@@ -27,7 +27,7 @@ function Navbar() {
           </>
         ) : (
           <Link href="/sign-in">
-            <Button className="w-full md:w-auto bg-slate-100 text-black" variant={'outline'}>Login</Button>
+            <Button className="w-full md:w-auto bg-[#A27B5C] text-black border border-black" variant={'outline'}>Login</Button>
           </Link>
         )}
       </div>

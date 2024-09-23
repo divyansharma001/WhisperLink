@@ -22,11 +22,11 @@ export default function Home() {
       {/* Main content */}
       <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-12 lg:px-24 py-12 bg-[#2C3639] text-white">
         <section className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold">
-            Dive into the World of Anonymous Feedback
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            Welcome to the Realm of Anonymous Thoughts
           </h1>
-          <p className="mt-3 md:mt-4 text-base md:text-lg max-w-2xl mx-auto">
-            True Feedback - Where your identity remains a secret.
+          <p className="mt-3 md:mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+            Whisper Link - Share your feelings without revealing your identity.
           </p>
         </section>
 
@@ -38,15 +38,15 @@ export default function Home() {
           <CarouselContent>
             {messages.map((message, index) => (
               <CarouselItem key={index} className="p-4">
-                <Card className="bg-[#DCD7C9] hover:shadow-lg transition-shadow duration-300">
+                <Card className="bg-[#DCD7C9] hover:shadow-2xl transition-shadow duration-300 rounded-lg">
                   <CardHeader>
-                    <CardTitle className="text-xl font-semibold">{message.title}</CardTitle>
+                    <CardTitle className="text-2xl font-semibold text-[#2C3639]">{message.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
-                    <Mail className="flex-shrink-0 text-[#2C3639] w-8 h-8" />
+                    <Mail className="flex-shrink-0 text-[#2C3639] w-10 h-10" />
                     <div>
                       <p className="text-gray-800">{message.content}</p>
-                      <p className="text-xs text-gray-500">{message.received}</p>
+                      <p className="text-xs text-gray-600">{message.received}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -55,19 +55,19 @@ export default function Home() {
           </CarouselContent>
           {/* Optional navigation buttons */}
           <div className="flex justify-between mt-4">
-            <CarouselPrevious className="bg-gray-700 text-white rounded-full p-2">
-              Previous
+            <CarouselPrevious className="bg-gray-800 text-white rounded-full p-3 hover:bg-gray-700 transition duration-200">
+              Back
             </CarouselPrevious>
-            <CarouselNext className="bg-gray-700 text-white rounded-full p-2">
-              Next
+            <CarouselNext className="bg-gray-800 text-white rounded-full p-3 hover:bg-gray-700 transition duration-200">
+              Forward
             </CarouselNext>
           </div>
         </Carousel>
       </main>
 
       {/* Footer */}
-      <footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
-        © 2023 Whisper Link. All rights reserved. 
+      <footer className="text-center p-4 md:p-6 bg-[#2C3639] text-white">
+        <p className="text-sm">© 2024 Whisper Link. Embrace your voice anonymously.</p>
       </footer>
     </>
   );
