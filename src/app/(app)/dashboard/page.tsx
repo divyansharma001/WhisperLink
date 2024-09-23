@@ -131,9 +131,9 @@ function UserDashboard() {
   };
 
   return (
-    <div className="flex justify-center my-8">
+    <div className="flex flex-col items-center my-8">
       <div className="p-6 bg-[#DCD7C9] rounded-lg w-full max-w-6xl shadow-md">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">User Dashboard</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">User Dashboard</h1>
 
         <div className="mb-4">
           <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
@@ -150,7 +150,7 @@ function UserDashboard() {
           </div>
         </div>
 
-        <div className="mb-4 flex items-center">
+        <div className="mb-4 flex items-center justify-center">
           <Switch
             {...register('acceptMessages')}
             checked={acceptMessages}
@@ -164,7 +164,7 @@ function UserDashboard() {
         <Separator />
 
         <Button
-          className="mt-4"
+          className="mt-4 w-full"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
@@ -176,6 +176,7 @@ function UserDashboard() {
           ) : (
             <RefreshCcw className="h-4 w-4" />
           )}
+          <span className="ml-2">{isLoading ? 'Loading...' : 'Refresh Messages'}</span>
         </Button>
         
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
