@@ -32,7 +32,7 @@ const parseStringMessages = (messageString: string): string[] => {
 };
 
 const initialMessageString =
-  "What's your favorite movie?||Do you have any pets?||What's your dream job?";
+  "It was a great session.||When is the next class?||The speed was bit fast.||I loved the way you explained the topic.||Can you please slow down a bit?||I have a question about the last topic.||The examples were really helpful.||I didn't understand the last part.||Can you explain that again?||The class was very informative.||I appreciate your effort.";
 
 export default function SendMessage() {
   const params = useParams<{ username: string }>();
