@@ -1,17 +1,19 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
+// Initialize the API client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 
 export const runtime = "edge";
 
 export async function POST(req: Request) {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        // Use the correct model name - check Google's documentation for the latest model ID
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-        const prompt =
-            "Create a list of three open-ended and engaging questions formatted as a single string. Each question should be separated by '||'. These questions are for an anonymous social messaging platform, like Qooh.me, and should be suitable for a diverse audience. Avoid personal or sensitive topics, focusing instead on universal themes that encourage friendly interaction. For example, your output should be structured like this: 'What's a hobby you've recently started?||If you could have dinner with any historical figure, who would it be?||What's a simple thing that makes you happy?'. Ensure the questions are intriguing, foster curiosity, and contribute to a positive and welcoming conversational environment.";
+        const prompt = "Generate a single string of three feedback responses from participants after a Next.js session, separated by '||'. Each response should be an open-ended comment about the session's content, delivery, or overall effectiveness in teaching Next.js. Avoid personal or sensitive inquiries. The responses should capture a range of perspectives such as positive feedback, areas for improvement, or neutral observations. For example: 'It was great', 'I was able to grasp things well', 'The speed could have been slower'.";
 
+        // You can use this prompt to generate the questions, and then present them to the users for their feedback.
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
